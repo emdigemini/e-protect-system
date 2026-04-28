@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/e-protect">
+    <BrowserRouter basename="/e-protect-system">
       <App />
     </BrowserRouter>
   </StrictMode>,
