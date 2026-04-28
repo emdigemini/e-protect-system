@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react'; 
 import { useNavigate, useLocation } from 'react-router-dom';
+import logo from "../../public/eprotect.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,14 +22,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-199 w-full backdrop-blur-xl bg-[#0a0a0a]/35 border-b border-gray-50/20">
+    <nav className="sticky top-0 z-199 w-full bg-[#0a0a0a] md:backdrop-blur-xl md:bg-[#0a0a0a]/35 border-b border-gray-50/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo Section */}
           <div className="flex items-center gap-2">
             <div className="h-15 w-15">
-              <img src="/eprotect.png" alt="" />
+              <img src={logo} alt="" />
             </div>
             <div>
               <h1 className="font-bold leading-none tracking-tight text-white">E-PROTECT</h1>
@@ -53,8 +54,8 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button (Visible only on small screens) */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile Menu Close Button */}
+          <div className="fixed top-2 right-2 md:hidden z-99 flex items-center">
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-400 hover:text-white focus:outline-none"
@@ -66,15 +67,15 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden bg-[#0a0a0a] border-b border-gray-800 transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100 py-6' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+      <div className={`fixed top-16 left-0 w-full md:hidden bg-[#0a0a0a] border-b border-gray-800 transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100 py-6' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="flex flex-col items-center gap-6 text-sm font-medium text-gray-400">
-          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Home</a>
-          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Services</a>
-          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Why Us</a>
-          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Contact</a>
+          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "home")}>Home</a>
+          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "services")}>Services</a>
+          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "why_us")}>Why Us</a>
+          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "contact")}>Contact</a>
           <hr className="w-1/2 border-gray-800" />
-          <button className="text-gray-400 hover:text-white">Admin</button>
-          <button className="bg-[#d4ff00] text-black w-3/4 py-3 rounded-sm font-bold active:scale-95 transition-all">
+          <button className="bg-[#d4ff00] text-black w-3/4 py-3 rounded-sm font-bold active:scale-95 transition-all"
+          onClick={() => navigate("/book")}>
             Request Service
           </button>
         </div>

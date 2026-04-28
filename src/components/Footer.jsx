@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Shield } from 'lucide-react';
+import logo from "../../public/eprotect.png";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
           <div className="md:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
               <div className="h-20 w-20">
-                <img src="/eprotect.png" alt="" />
+                <img src={logo} alt="" />
               </div>
               <h2 className="text-lg font-bold tracking-tight">E-PROTECT</h2>
             </div>
