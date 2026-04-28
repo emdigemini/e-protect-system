@@ -19,7 +19,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div id="home" className='border-b border-gray-50/20'>
+    <div id="home" className='relative border-b border-gray-50/20'>
+      <div className="absolute -top-10 -right-10 h-80 w-80 bg-[#d4ff00]/20 rounded-full blur-[200px] pointer-events-none"></div>
+      <div className="absolute top-0 h-screen w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none">
+      </div>
       <main className="max-w-7xl mx-auto px-8 pt-20 pb-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left Column */}
@@ -59,7 +62,7 @@ const Dashboard = () => {
         {/* Right Column: Live Status Card */}
         <div className="lg:col-span-5 flex justify-end">
           <div className="bg-[#111111] border border-gray-800 p-8 rounded-sm w-full max-w-sm relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-12 h-0.5 bg-[#d4ff00]" />
+            <div className="absolute top-0 left-0 w-16 h-0.5 bg-[#d4ff00]" />
             
             <div className="space-y-6">
               <div>
@@ -88,8 +91,8 @@ const Dashboard = () => {
         </div>
       </main>
 
-      {/* Footer Stats */}
-      <footer className="max-w-7xl mx-auto px-8 border-t border-gray-900">
+      {/* Stats */}
+      <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
           <div className="space-y-1">
             <p className="text-4xl font-bold">120+</p>
@@ -108,7 +111,7 @@ const Dashboard = () => {
             <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Local Service</p>
           </div>
         </div>
-      </footer>
+      </div>
     </div>
   );
 };

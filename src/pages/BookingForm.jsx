@@ -12,7 +12,9 @@ const BookingForm = () => {
   const [service, setService] = useState("");
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans py-16 px-8">
+    <div className="relative min-h-screen bg-black text-white font-sans py-16 px-8">
+      <div className="absolute top-0 h-[23vh] w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none">
+      </div>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <button className="flex items-center gap-2 text-white/50 hover:text-white transition-colors mb-8 group cursor-pointer"

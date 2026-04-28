@@ -22,8 +22,10 @@ const ContactUs = () => {
   ];
 
   return (
-    <section id="contact" className="bg-[#0a0a0a] py-24 px-8 flex justify-center items-center">
-      <div className="max-w-6xl w-full bg-[#111111] border border-gray-800 p-12 md:p-20 rounded-sm grid grid-cols-1 lg:grid-cols-2 gap-16 relative overflow-hidden"> 
+    <section id="contact" className="relative bg-black py-24 px-8 flex justify-center items-center">
+      <div className="absolute top-0 h-screen w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none">
+      </div>
+      <div className="max-w-6xl w-full bg-[#101010] border border-white/20 p-12 md:p-20 rounded-sm grid grid-cols-1 lg:grid-cols-2 gap-16 relative overflow-hidden"> 
         
         {/* Left Column: Heading & Buttons */}
         <div className="space-y-8">
@@ -57,10 +59,10 @@ const ContactUs = () => {
           {contactInfo.map((info, index) => (
             <div 
               key={index} 
-              className="bg-[#0a0a0a] border border-gray-800 p-6 flex items-start gap-4 rounded-sm hover:border-gray-700 transition-colors"
+              className="bg-[#0a0a0a] border border-white/20 p-6 flex items-start gap-4 rounded-sm hover:border-white/30 transition-colors"
             >
               <div className="mt-1">{info.icon}</div>
-              <div className="space-y-1">
+              <div>
                 <p className="text-[10px] font-mono text-gray-500 tracking-[0.2em] font-bold">
                   {info.label}
                 </p>

@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why_us" className="scroll-mt-30 bg-[#0a0a0a] text-white py-24 px-8 border-b border-gray-50/20">
+    <section id="why_us" className="scroll-mt-30 bg-black text-white py-24 px-8 border-b border-gray-50/20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         
         <div className="space-y-6">

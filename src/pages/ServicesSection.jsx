@@ -59,7 +59,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="bg-[#0a0a0a] text-white py-24 px-8 border-b border-gray-50/20">
+    <section id="services" className="bg-black text-white py-24 px-8 border-b border-gray-50/20">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -81,7 +81,7 @@ const ServicesSection = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 border border-gray-800">
           {services.map((service) => (
-            <div key={service.id} className="border-r border-gray-800 last:border-r-0 p-8 flex flex-col group">
+            <div key={service.id} className="border-r border-gray-800 last:border-r-0 p-8 flex flex-col group hover:bg-[#1c1c1f] transition-all ease-in-out">
               {/* Card Header */}
               <div className="flex justify-between items-start mb-8">
                 <div className="border border-gray-700 p-3 rounded-sm text-gray-400">
@@ -95,7 +95,7 @@ const ServicesSection = () => {
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-60"
+                  className="w-full h-full object-cover grayscale-0 md:grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500 opacity-60"
                 />
               </div>
 
