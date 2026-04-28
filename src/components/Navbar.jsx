@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react'; 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import logo from "../../public/eprotect.png";
 
 const Navbar = () => {
@@ -39,10 +39,10 @@ const Navbar = () => {
 
           {/* Desktop Menu (Visible on md and up) */}
           <div className="hidden md:flex items-center gap-8 text-xs font-medium text-gray-400">
-            <a href="/" onClick={(e) => scrollToSection(e, "home")} className="hover:text-white transition-colors">Home</a>
-            <a href="/" onClick={(e) => scrollToSection(e, "services")} className="hover:text-white transition-colors">Services</a>
-            <a href="/" onClick={(e) => scrollToSection(e, "why_us")} className="hover:text-white transition-colors">Why Us</a>
-            <a href="/" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-white transition-colors">Contact</a>
+            <Link to="/" onClick={(e) => scrollToSection(e, "home")} className="hover:text-white transition-colors">Home</Link>
+            <Link to="/" onClick={(e) => scrollToSection(e, "services")} className="hover:text-white transition-colors">Services</Link>
+            <Link to="/" onClick={(e) => scrollToSection(e, "why_us")} className="hover:text-white transition-colors">Why Us</Link>
+            <Link to="/" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-white transition-colors">Contact</Link>
           </div>
 
           {/* Desktop Action Buttons */}
@@ -69,10 +69,10 @@ const Navbar = () => {
       {/* Mobile Menu Dropdown */}
       <div className={`fixed top-16 left-0 w-full md:hidden bg-[#0a0a0a] border-b border-gray-800 transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100 py-6' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="flex flex-col items-center gap-6 text-sm font-medium text-gray-400">
-          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "home")}>Home</a>
-          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "services")}>Services</a>
-          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "why_us")}>Why Us</a>
-          <a href="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "contact")}>Contact</a>
+          <Link to="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "home")}>Home</Link>
+          <Link to="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "services")}>Services</Link>
+          <Link to="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "why_us")}>Why Us</Link>
+          <Link to="/" className="hover:text-white" onClick={(e) => scrollToSection(e, "contact")}>Contact</Link>
           <hr className="w-1/2 border-gray-800" />
           <button className="bg-[#d4ff00] text-black w-3/4 py-3 rounded-sm font-bold active:scale-95 transition-all"
           onClick={() => navigate("/book")}>
