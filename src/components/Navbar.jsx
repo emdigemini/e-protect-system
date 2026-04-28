@@ -1,0 +1,86 @@
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react'; 
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (e, id) => {
+    if (location.pathname !== "/")
+      return
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
+  return (
+    <nav className="sticky top-0 z-199 w-full backdrop-blur-xl bg-[#0a0a0a]/35 border-b border-gray-50/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo Section */}
+          <div className="flex items-center gap-2">
+            <div className="h-15 w-15">
+              <img src="/eprotect.png" alt="" />
+            </div>
+            <div>
+              <h1 className="font-bold leading-none tracking-tight text-white">E-PROTECT</h1>
+              <p className="text-[10px] text-white/50 tracking-[0.2em]">SECURITY • BARAS, RIZAL</p>
+            </div>
+          </div>
+
+          {/* Desktop Menu (Visible on md and up) */}
+          <div className="hidden md:flex items-center gap-8 text-xs font-medium text-gray-400">
+            <a href="/" onClick={(e) => scrollToSection(e, "home")} className="hover:text-white transition-colors">Home</a>
+            <a href="/" onClick={(e) => scrollToSection(e, "services")} className="hover:text-white transition-colors">Services</a>
+            <a href="/" onClick={(e) => scrollToSection(e, "why_us")} className="hover:text-white transition-colors">Why Us</a>
+            <a href="/" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-white transition-colors">Contact</a>
+          </div>
+
+          {/* Desktop Action Buttons */}
+          <div className="hidden md:flex items-center gap-6">
+            <button className="bg-[#d4ff00] text-black px-4 py-2 rounded-sm text-sm font-bold hover:bg-[#b8de00] transition-colors cursor-pointer"
+              onClick={() => navigate("/book")}
+            >
+              Request Service
+            </button>
+          </div>
+
+          {/* Mobile Menu Button (Visible only on small screens) */}
+          <div className="md:hidden flex items-center">
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-400 hover:text-white focus:outline-none"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div className={`md:hidden bg-[#0a0a0a] border-b border-gray-800 transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100 py-6' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className="flex flex-col items-center gap-6 text-sm font-medium text-gray-400">
+          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Home</a>
+          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Services</a>
+          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Why Us</a>
+          <a href="#" className="hover:text-white" onClick={() => setIsOpen(false)}>Contact</a>
+          <hr className="w-1/2 border-gray-800" />
+          <button className="text-gray-400 hover:text-white">Admin</button>
+          <button className="bg-[#d4ff00] text-black w-3/4 py-3 rounded-sm font-bold active:scale-95 transition-all">
+            Request Service
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
