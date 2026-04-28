@@ -9,8 +9,10 @@ const Navbar = () => {
   const location = useLocation();
 
   const scrollToSection = (e, id) => {
-    if (location.pathname !== "/")
+    if (location.pathname !== "/") {
+      navigate("/");
       return
+    }
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
