@@ -15,7 +15,7 @@ const WhyChooseUs = () => {
     {
       icon: <Headphones size={16} className="text-[#d4ff00]" />,
       title: "After-Sales Support",
-      description: "Free consultation for 30 days post-installation. We pick up calls."
+      description: "Free consultation for 60 days post-installation. We pick up calls."
     },
     {
       icon: <ShieldCheck size={16} className="text-[#d4ff00]" />,
