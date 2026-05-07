@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Shield } from 'lucide-react';
-import logo from "../../public/eprotect.png";
+import logo from "/eprotect.png";
 
 const Footer = () => {
   return (

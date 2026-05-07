@@ -5,10 +5,12 @@ import ServicesSection from "./pages/ServicesSection"
 import WhyChooseUs from "./pages/WhyChooseUs"
 import ContactUs from "./pages/ContactUs"
 import BookingForm from "./pages/BookingForm"
+import ScrollToTop from "./components/ScrollToTop"
 
 const App = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#d4ff00] selection:text-black">
+        <ScrollToTop>
       <Routes>
         <Route path="/" element={<Routing />}>
           <Route
@@ -29,6 +31,7 @@ const App = () => {
             } />
         </Route>
       </Routes>
+        </ScrollToTop>
     </div>
   )
 }

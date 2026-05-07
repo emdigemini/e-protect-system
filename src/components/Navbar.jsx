@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react'; 
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import logo from "../../public/eprotect.png";
+import logo from "/eprotect.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   const scrollToSection = (e, id) => {
-    if (location.pathname !== "/") {
+    if (pathname !== "/") {
       navigate("/");
       return
     }
