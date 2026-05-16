@@ -1,12 +1,13 @@
 import Navbar from '../components/Navbar';
 import { ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const scrollToSection = (e, id) => {
-    if (location.pathname !== "/")
+    if (pathname !== "/")
       return
     e.preventDefault();
     const element = document.getElementById(id);

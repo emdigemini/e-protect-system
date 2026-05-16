@@ -1,6 +1,11 @@
 import { Camera, Bell, Key, CheckCircle2, ArrowUpRight, Smartphone, Activity, UnfoldVertical, BellRing } from 'lucide-react';
+import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import serviceContext from '../context/serviceContext';
 
 const ServicesSection = () => {
+  const { serviceId, setServiceId, setFocusField } = useContext(serviceContext);
+
   const services = [
     {
       id: '01',
@@ -36,7 +41,7 @@ const ServicesSection = () => {
       description: 'Advanced infrared technology that detects unauthorized movement and triggers alerts immediately.',
       image: 'https://images.unsplash.com/photo-1549884784-d66096288100?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHNlY3VyaXR5JTIwTW90aW9uJTIwU2Vuc29yc3xlbnwwfHwwfHx8MA%3D%3D',
       features: ['Pet-immune technology', 'Wide-angle detection', 'Wireless battery-operated', 'Tamper-proof design'],
-      price: '₱1,200 - ₱3,500'
+      price: '₱1,200 - ₱3,500',
     },
     {
       id: '05',
@@ -57,6 +62,10 @@ const ServicesSection = () => {
       price: '₱4,500 - ₱8,500'
     }
   ];
+
+  useEffect(() => {
+    setFocusField(false);
+  }, [setFocusField])
 
   return (
     <section id="services" className="bg-black text-white py-24 px-8 border-b border-gray-50/20">
@@ -122,9 +131,13 @@ const ServicesSection = () => {
                   <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1">Starting At</p>
                   <p className="text-xl font-bold">{service.price}</p>
                 </div>
-                <button className="bg-[#d4ff00] p-3 text-black rounded-sm hover:bg-[#b8de00] transition-colors">
+                <Link to="/book" className="bg-[#d4ff00] p-3 text-black rounded-sm hover:bg-[#b8de00] transition-all cursor-pointer hover:scale-110 ease-in-out active:scale-100"
+                onClick={() => {
+                  setFocusField(true);
+                  setServiceId(service.id);
+                }}>
                   <ArrowUpRight size={20} />
-                </button>
+                </Link>
               </div>
             </div>
           ))}

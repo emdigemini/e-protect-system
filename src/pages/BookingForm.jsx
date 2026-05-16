@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, Calendar, Clock, ShieldCheck } from 'lucide-react';
 import TimePicker from 'react-time-picker';
-import { useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import serviceContext from '../context/serviceContext';
 
 const BookingForm = () => {
   const navigate = useNavigate();
@@ -9,7 +10,9 @@ const BookingForm = () => {
   const [name, setName] = useState("");
   const [phNumber, setPhNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [service, setService] = useState("");
+  const { serviceId, setServiceId, focusField } = useContext(serviceContext);
+
+  useEffect(() => console.log(focusField), [focusField])
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans py-16 px-8">
@@ -76,12 +79,16 @@ const BookingForm = () => {
               <div className="space-y-2">
                 <label className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">Service Type *</label>
                 <div className="relative">
-                  <select className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm appearance-none focus:outline-none focus:border-[#d4ff00] transition-colors text-gray-400" value={service}
-                  onChange={(e) => setService(e.target.value)}>
+                  <select className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm appearance-none focus:outline-none focus:border-[#d4ff00] transition-colors text-gray-400" value={serviceId}
+                  autoFocus={focusField}
+                  onChange={(e) => setServiceId(e.target.value)}>
                     <option>Choose a service</option>
-                    <option>CCTV Installation</option>
-                    <option>Alarm Systems</option>
-                    <option>Access Control</option>
+                    <option value="01">CCTV Installation</option>
+                    <option value="02">Alarm Systems</option>
+                    <option value="03">Mobile Phone Monitoring</option>
+                    <option value="04">Motion Sensors</option>
+                    <option value="05">Door/Window Sensors</option>
+                    <option value="06">Video Doorbell</option>
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 pointer-events-none" size={18} />
                 </div>
@@ -132,7 +139,7 @@ const BookingForm = () => {
                   setName("");
                   setPhNumber("");
                   setAddress("");
-                  setService("");
+                  setServiceId("");
                 }}>
                   Clear
                 </button>
