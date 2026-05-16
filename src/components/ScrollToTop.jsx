@@ -5,7 +5,9 @@ const ScrollToTop = ({ children }) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    document.getElementById("root").scrollTo({
+    const root = document.getElementById("root");
+
+    root.scrollTo({ 
       top: 0,
       behavior: "smooth"
     });
