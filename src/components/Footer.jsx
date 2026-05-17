@@ -1,7 +1,27 @@
 import { Phone, Mail, MapPin, Shield } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from "/eprotect.png";
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const scrollToSection = (e, id) => {
+    if (pathname !== "/") {
+      navigate("/");
+      return
+    }
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <footer className="bg-[#000000] text-white pt-20 pb-10 px-8 border-t border-gray-900">
       <div className="max-w-7xl mx-auto">
@@ -33,9 +53,8 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className="space-y-4 text-sm font-medium">
-              <li><a href="#" className="hover:text-[#d4ff00] transition-colors">Services</a></li>
-              <li><a href="#" className="hover:text-[#d4ff00] transition-colors">Request Service</a></li>
-              <li><a href="#" className="hover:text-[#d4ff00] transition-colors">Admin Portal</a></li>
+              <li><Link to="/" onClick={(e) => scrollToSection(e, 'home')} className="hover:text-[#d4ff00] transition-colors">Home</Link></li>
+              <li><a onClick={() => navigate("/book")} className="hover:text-[#d4ff00] transition-colors cursor-pointer">Request Service</a></li>
             </ul>
           </div>
 

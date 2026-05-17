@@ -29,9 +29,9 @@ const Dashboard = () => {
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-8">
           <div className="inline-flex items-center gap-2 bg-[#1a1a1a] border border-gray-800 px-3 py-1 rounded-sm">
-            <span className="w-2 h-2 bg-[#d4ff00] rounded-full animate-pulse" />
+            <span className="w-2 h-2 bg-[#31fc1b] rounded-full animate-pulse" />
             <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">
-              Now Servicing • Baras, Rizal
+              Available • Baras, Rizal
             </span>
           </div>
 
