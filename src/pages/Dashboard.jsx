@@ -1,9 +1,12 @@
 import Navbar from '../components/Navbar';
 import { ArrowRight } from 'lucide-react';
+import { useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import serviceContext from '../context/serviceContext';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { isSystemOnline } = useContext(serviceContext);
   const { pathname } = useLocation();
 
   const scrollToSection = (e, id) => {
@@ -29,9 +32,10 @@ const Dashboard = () => {
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-8">
           <div className="inline-flex items-center gap-2 bg-[#1a1a1a] border border-gray-800 px-3 py-1 rounded-sm">
-            <span className="w-2 h-2 bg-[#31fc1b] rounded-full animate-pulse" />
+            <span className={`w-2 h-2 rounded-full animate-pulse
+              ${isSystemOnline ? "bg-[#31fc1b]" : "bg-red-500" }`} />
             <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">
-              Available • Baras, Rizal
+              {isSystemOnline ? "Available • Baras, Rizal" : "Unavailable Right Now"}
             </span>
           </div>
 
@@ -69,10 +73,17 @@ const Dashboard = () => {
               <div>
                 <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold mb-4">Live Status</p>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-3xl font-bold">Online</h3>
-                  <span className="w-3 h-3 bg-[#d4ff00] rounded-full" />
+                  <h3 className="text-3xl font-bold">
+                    {isSystemOnline ? "Online" : "Unavailable"}
+                  </h3>
+                  <span className={`w-3 h-3 rounded-full
+                    ${isSystemOnline ? "bg-[#31fc1b]" : "bg-red-500" }`} />
                 </div>
-                <p className="text-gray-500 text-sm mt-1">Booking system accepting requests.</p>
+                <p className="text-gray-500 text-sm mt-1">
+                  {isSystemOnline
+                    ? "Booking system accepting requests."
+                    : "We are currently not accepting site survey bookings right now. Please check back later."}
+                </p>
               </div>
 
               <hr className="border-gray-800" />

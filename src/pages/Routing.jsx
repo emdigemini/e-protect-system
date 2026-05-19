@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import Admin from "./Admin"
 
-const Routing = () => {
+export const Routing = () => {
   return (
     <>
       <Navbar />
@@ -12,4 +13,11 @@ const Routing = () => {
   )
 }
 
-export default Routing
+
+export const AdminRouting = () => {
+  return (
+    <>
+      <Admin />
+    </>
+  )
+}
