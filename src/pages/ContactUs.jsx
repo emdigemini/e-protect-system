@@ -86,7 +86,7 @@ const ContactUs = () => {
         {/* Subtle Background Detail (Grid) */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
              style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', size: '40px 40px' }} 
-        />
+        /> 
       </div>
     </section>
   );

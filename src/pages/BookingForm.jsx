@@ -4,15 +4,44 @@ import TimePicker from 'react-time-picker';
 import { useContext, useEffect, useRef, useState } from 'react';
 import serviceContext from '../context/serviceContext';
 
+const services = [
+  { id: '01', name: 'CCTV Installation' },
+  { id: '02', name: 'Mobile Phone Monitoring' },
+  { id: '03', name: 'Alarm Systems' },
+  { id: '04', name: 'Motion Sensors' },
+  { id: '05', name: 'Door/Window Sensors' },
+  { id: '06', name: 'Video Doorbell' },
+] 
+
 const BookingForm = () => {
   const navigate = useNavigate();
   const dateRef = useRef(null);
   const [name, setName] = useState("");
-  const [phNumber, setPhNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const { serviceId, setServiceId, focusField } = useContext(serviceContext);
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [notes, setNotes] = useState("");
+  const { serviceId, setServiceId, focusField, newRequest } = useContext(serviceContext);
 
-  useEffect(() => console.log(focusField), [focusField])
+  const formatPhone = (value) => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+
+    if (digits.length <= 4) return digits;
+    if (digits.length <= 7) return `${digits.slice(0, 4)}-${digits.slice(4)}`;
+    return `${digits.slice(0, 4)}-${digits.slice(4, 7)}-${digits.slice(7)}`;
+  };
+
+  const getServices = () => {
+    return services.filter(s => s.id === serviceId).map(s => s.name).join("");
+  }
+
+  const transformDate = () => {
+    return new Date().toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans py-16 px-8">
@@ -37,7 +66,15 @@ const BookingForm = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <div className="lg:col-span-2 bg-[#111111] border border-gray-800 p-8 md:p-12 rounded-sm">
-            <form className="space-y-8">
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              newRequest({
+                name, phone, location,
+                service: getServices(),
+                date: transformDate(),
+                notes
+              });
+            }} className="space-y-8">
               
               {/* Row 1: Name and Number */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -54,11 +91,11 @@ const BookingForm = () => {
                 <div className="space-y-2">
                   <label className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">Contact Number *</label>
                   <input 
-                    value={phNumber}
-                    type="number" 
-                    placeholder="09123456789"
+                    value={phone}
+                    type="text" 
+                    placeholder="0912-345-6789"
                     className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm focus:outline-none focus:border-[#d4ff00] transition-colors placeholder:text-gray-700"
-                    onChange={(e) => setPhNumber(e.target.value)}
+                    onChange={(e) => setPhone(formatPhone(e.target.value))}
                   />
                 </div>
               </div>
@@ -67,11 +104,11 @@ const BookingForm = () => {
               <div className="space-y-2">
                 <label className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">Installation Address *</label>
                 <input 
-                  value={address}
+                  value={location}
                   type="text" 
                   placeholder="Block 4 Lot 7, Brgy. San Juan, Baras, Rizal"
                   className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm focus:outline-none focus:border-[#d4ff00] transition-colors placeholder:text-gray-700"
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
 
@@ -94,39 +131,13 @@ const BookingForm = () => {
                 </div>
               </div>
 
-              {/* Row 4: Date and Time */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor='preferred-date ' className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">
-                    Preferred Date *
-                  </label>
-                  <div className="relative group cursor-pointer">
-                    <input id="preferred-date" type="date" 
-                      className="w-full bg-[#0a0a0a] text-white text-xs border border-gray-800 p-3 rounded-sm cursor-pointer" 
-                    />
-                    <Calendar 
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 pointer-events-none" 
-                      size={18} 
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="preferred-time" className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">
-                    Preferred Time *
-                  </label>
-                  <div className="relative">
-                    <input ref={dateRef} id="preferred-time" type="time" required className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm focus:outline-none"/>
-                    <Clock className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 pointer-events-none" size={18}
-                    onClick={() => dateRef?.current?.showPicker?.()} />
-                  </div>
-                </div>
-              </div>
-
-              {/* Row 5: Notes */}
+              {/* Row 4: Notes */}
               <div className="space-y-2">
                 <label className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">Notes (Optional)</label>
                 <textarea 
                   rows={4}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
                   placeholder="Special requests..."
                   className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-4 rounded-sm focus:outline-none focus:border-[#d4ff00] transition-colors placeholder:text-gray-700 resize-none"
                 />
@@ -137,9 +148,10 @@ const BookingForm = () => {
                 <button type="button" className="px-8 py-3 border border-gray-800 rounded-sm font-bold text-sm hover:bg-white/5 transition-colors cursor-pointer"
                 onClick={() => {
                   setName("");
-                  setPhNumber("");
-                  setAddress("");
+                  setPhone("");
+                  setLocation("");
                   setServiceId("");
+                  setNotes("");
                 }}>
                   Clear
                 </button>

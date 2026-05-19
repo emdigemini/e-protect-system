@@ -1,14 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import serviceContext from "../context/serviceContext";
 import { FiPhone, FiMapPin, FiPower } from 'react-icons/fi';
 
 const AdminDashboard = () => {
-  const { setSystemOnlineStatus, isSystemOnline } = useContext(serviceContext);
-  const [requests, setRequests] = useState([
-    { id: "EP-001", name: "Juan Dela Cruz",  phone: "0912-345-6789", location: "Baras, Rizal",    service: "CCTV Installation",            date: "May 20, 2026", status: "Pending"     },
-    { id: "EP-002", name: "Maria Clara",     phone: "0918-765-4321", location: "Tanay, Rizal",    service: "Alarm System & Motion Sensors", date: "May 19, 2026", status: "In Progress" },
-    { id: "EP-003", name: "Aris Sumulong",   phone: "0922-111-2222", location: "Antipolo, Rizal", service: "Full Smart Home Setup",         date: "May 18, 2026", status: "Completed"   },
-  ]);
+  const { setSystemOnlineStatus, isSystemOnline, requests } = useContext(serviceContext);
+  useEffect(() => console.log(requests), [requests])
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
@@ -125,7 +121,7 @@ const RequestList = ({ requests }) => {
           <td className="p-4 pr-6 text-right">
             <div className="flex items-center justify-end gap-2">
               <button className="p-2 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 rounded-lg text-xs font-medium transition-all text-neutral-300 cursor-pointer whitespace-nowrap">
-                View Details
+                View Notes
               </button>
               <button className="p-2 bg-[#DFFF00] hover:bg-[#cbe600] text-black rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap">
                 Approve

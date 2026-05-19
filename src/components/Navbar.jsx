@@ -45,6 +45,7 @@ const Navbar = () => {
             <Link to="/" onClick={(e) => scrollToSection(e, "services")} className="hover:text-white transition-colors">Services</Link>
             <Link to="/" onClick={(e) => scrollToSection(e, "why_us")} className="hover:text-white transition-colors">Why Us</Link>
             <Link to="/" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-white transition-colors">Contact</Link>
+            <Link to="/admin-portal" className="hover:text-white transition-colors">Admin Portal</Link>
           </div>
 
           {/* Desktop Action Buttons */}

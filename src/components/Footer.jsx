@@ -55,6 +55,7 @@ const Footer = () => {
             <ul className="space-y-4 text-sm font-medium">
               <li><Link to="/" onClick={(e) => scrollToSection(e, 'home')} className="hover:text-[#d4ff00] transition-colors">Home</Link></li>
               <li><a onClick={() => navigate("/book")} className="hover:text-[#d4ff00] transition-colors cursor-pointer">Request Service</a></li>
+              <li><a onClick={() => navigate("/admin-portal")} className="hover:text-[#d4ff00] transition-colors cursor-pointer">Admin Portal</a></li>
             </ul>
           </div>
 
