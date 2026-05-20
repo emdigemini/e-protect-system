@@ -68,12 +68,12 @@ const ContactUs = () => {
                 </p>
                 {info.value.includes("Baras")
                   ? <a 
-                      href="https://www.google.com/maps/@14.5235617,121.2635244,3a,75y,292.49h,85.8t/data=!3m7!1e1!3m5!1s9gU3ImRn7pL1EUxFA1-8Pw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D4.198125024381895%26panoid%3D9gU3ImRn7pL1EUxFA1-8Pw%26yaw%3D292.4886704956573!7i16384!8i8192!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D " 
+                      href="https://maps.app.goo.gl/JHPXSVxey4D4j7of9" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 group"
                     >
-                      <span className="group-hover:text-gray-300 text-xs transition-colors underline">156 Salvador St. Baras, Rizal</span>
+                      <span className="group-hover:text-gray-300 text-xs transition-colors underline">68 P Burgos St. Baras, Rizal</span>
                     </a>
                   : <p className="text-xs text-white font-medium">
                       {info.value}
@@ -83,7 +83,6 @@ const ContactUs = () => {
           ))}
         </div>
 
-        {/* Subtle Background Detail (Grid) */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
              style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', size: '40px 40px' }} 
         /> 
