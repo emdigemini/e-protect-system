@@ -67,7 +67,6 @@ const BookingForm = () => {
           
           <div className="lg:col-span-2 bg-[#111111] border border-gray-800 p-8 md:p-12 rounded-sm">
             <form onSubmit={(e) => {
-              e.preventDefault();
               newRequest({
                 name, phone, location,
                 service: getServices(),
