@@ -4,64 +4,7 @@ import { Link } from 'react-router-dom';
 import serviceContext from '../context/serviceContext';
 
 const ServicesSection = () => {
-  const { serviceId, setServiceId, setFocusField } = useContext(serviceContext);
-
-  const services = [
-    {
-      id: '01',
-      icon: <Camera size={20} />,
-      title: 'CCTV Installation',
-      description: 'HD/4K cameras, DVR/NVR setup, and remote viewing for homes and small businesses.',
-      image: 'https://plus.unsplash.com/premium_photo-1682086494943-9d4e1626a9d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNjdHYlMjBpbnN0YWxsYXRpb258ZW58MHx8MHx8fDA%3D',
-      features: ['Indoor & outdoor cameras', 'Mobile remote viewing', 'Night-vision support', '30-day storage setup'],
-      price: '₱3,000 -  ₱10,000'
-    },
-    {
-      id: '02',
-      icon: <Bell size={20} />,
-      title: 'Alarm Systems',
-      description: 'Motion sensors, door/window contacts, and siren systems with smart-phone notifications.',
-      image: 'https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=800&auto=format&fit=crop',
-      features: ['Motion & magnetic sensors', 'Loud siren deterrent', 'SMS / app alerts', 'Battery backup'],
-      price: '₱2,500 -  ₱8,000'
-    },
-    {
-      id: '03',
-      icon: <Smartphone size={20} />,
-      title: 'Mobile Phone Monitoring',
-      description: 'Access your security feeds anywhere in the world. We set up secure cloud integration for your mobile devices.',
-      image: 'https://images.unsplash.com/photo-1726463276806-63a1e75ccb66?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW9iaWxlJTIwbW9uaXRvcnxlbnwwfHwwfHx8MA%3D%3D',
-      features: ['Real-time video streaming', 'Instant push notifications', 'Multi-user access level', 'Cloud playback support'],
-      price: '₱1,500 - ₱3,000'
-    },
-    {
-      id: '04',
-      icon: <Activity size={20} />,
-      title: 'Motion Sensors',
-      description: 'Advanced infrared technology that detects unauthorized movement and triggers alerts immediately.',
-      image: 'https://images.unsplash.com/photo-1549884784-d66096288100?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHNlY3VyaXR5JTIwTW90aW9uJTIwU2Vuc29yc3xlbnwwfHwwfHx8MA%3D%3D',
-      features: ['Pet-immune technology', 'Wide-angle detection', 'Wireless battery-operated', 'Tamper-proof design'],
-      price: '₱1,200 - ₱3,500',
-    },
-    {
-      id: '05',
-      icon: <UnfoldVertical size={20} />,
-      title: 'Door/Window Sensors',
-      description: 'Magnetic contact sensors that trigger an alarm the moment a door or window is pried open.',
-      image: 'https://media.istockphoto.com/id/1174826741/photo/magnetic-alarm-sensor.jpg?s=612x612&w=0&k=20&c=-7VgWbpHDjRYfC5JahfoQBBMZqg15iUIgsWeY4ZLDSg=',
-      features: ['Magnetic contact trigger', 'Ultra-slim wireless design', '2-year battery lifespan', 'Instant entry alerts'],
-      price: '₱800 - ₱2,500'
-    },
-    {
-      id: '06',
-      icon: <BellRing size={20} />,
-      title: 'Video Doorbell',
-      description: "See, hear, and speak to whoever is at your door from your smartphone, even when you're not home.",
-      image: 'https://plus.unsplash.com/premium_photo-1729574957020-69b6ae3652d9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHZpZGVvJTIwZG9vcmJlbGx8ZW58MHx8MHx8fDA%3D',
-      features: ['Two-way audio communication', '1080p HD Video feed', 'Person detection AI', 'Weatherproof casing'],
-      price: '₱4,500 - ₱8,500'
-    }
-  ];
+  const { serviceId, setServiceId, setFocusField, initInvetory } = useContext(serviceContext);
 
   useEffect(() => {
     setFocusField(false);
@@ -89,7 +32,7 @@ const ServicesSection = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 border border-gray-800">
-          {services.map((service) => (
+          {initInvetory.map((service) => (
             <div key={service.id} className="border-r border-gray-800 last:border-r-0 p-8 flex flex-col group hover:bg-[#1c1c1f] transition-all ease-in-out">
               {/* Card Header */}
               <div className="flex justify-between items-start mb-8">
@@ -103,14 +46,14 @@ const ServicesSection = () => {
               <div className="relative aspect-video mb-8 overflow-hidden bg-gray-900">
                 <img 
                   src={service.image} 
-                  alt={service.title}
+                  alt={service.name}
                   className="w-full h-full object-cover grayscale-0 md:grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500 opacity-60"
                 />
               </div>
 
               {/* Content */}
               <div className="grow space-y-4">
-                <h3 className="text-xl font-bold">{service.title}</h3>
+                <h3 className="text-xl font-bold">{service.name}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   {service.description}
                 </p>
@@ -128,8 +71,9 @@ const ServicesSection = () => {
               {/* Card Footer */}
               <div className="mt-12 pt-8 border-t border-gray-800 flex justify-between items-end">
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1">Starting At</p>
-                  <p className="text-xl font-bold">{service.price}</p>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1">STOCKS: {service.stock}</p>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1">PRICE:</p>
+                  <p className="text-xl font-bold">₱ {service.price}</p>
                 </div>
                 <Link to="/book" className="bg-[#d4ff00] p-3 text-black rounded-sm hover:bg-[#b8de00] transition-all cursor-pointer hover:scale-110 ease-in-out active:scale-100"
                 onClick={() => {

@@ -1,40 +1,32 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FiClipboard, FiPackage, FiAlertTriangle, FiPlus, FiMinus } from 'react-icons/fi';
-
-const INITIAL_INVENTORY = [
-  { id: "INV-001", name: "CCTV",      category: "CCTV",    unit: "pcs", stock: 14, low: 5,  price: 2800  },
-  { id: "INV-002", name: "Mobile Phone Monitoring",    category: "CCTV",    unit: "pcs", stock: 10, low: 5,  price: 1500  },
-  { id: "INV-003", name: "Motion Sensors",             category: "Sensors",    unit: "pcs", stock: 8,  low: 3,  price: 1000  },
-  { id: "INV-004", name: "Alarm System",             category: "Alarm",    unit: "pcs", stock: 4,  low: 3,  price: 799  },
-  { id: "INV-005", name: "Door/Window Sensors",         category: "Alarm",   unit: "pcs", stock: 6,  low: 5,  price: 649   },
-  { id: "INV-006", name: "Video Doorbell",        category: "Intercom",   unit: "pcs", stock: 15, low: 4,  price: 4000   },
-];
+import serviceContext from '../context/serviceContext';
 
 const CATEGORIES = ["All", "CCTV", "Alarm", "Sensors", "Intercom"];
 
 const Inventory = () => {
-  const [inventory, setInventory] = useState(INITIAL_INVENTORY);
+  const { initInvetory, setInitInventory } = useContext(serviceContext);
   const [activeCategory, setActiveCategory] = useState("All");
   const [inventorySearch, setInventorySearch] = useState("");
 
-  const updateStock = (id, delta) => {
-    setInventory(prev =>
+  const updateStock = (id, count) => {
+    setInitInventory(prev =>
       prev.map(item =>
-        item.id === id ? { ...item, stock: Math.max(0, item.stock + delta) } : item
+        item.id === id ? { ...item, stock: Math.max(0, item.stock + count) } : item
       )
     );
   };
 
-  const filteredInventory = inventory.filter(item => {
+  const filteredInventory = initInvetory.filter(item => {
     const matchCat = activeCategory === "All" || item.category === activeCategory;
     const matchSearch = item.name.toLowerCase().includes(inventorySearch.toLowerCase()) ||
                         item.category.toLowerCase().includes(inventorySearch.toLowerCase());
     return matchCat && matchSearch;
   });
 
-  const lowStockCount = inventory.filter(i => i.stock <= i.low).length;
-  const totalItems    = inventory.reduce((sum, i) => sum + i.stock, 0);
-  const totalValue    = inventory.reduce((sum, i) => sum + i.stock * i.price, 0);
+  const lowStockCount = initInvetory.filter(i => i.stock <= i.low).length;
+  const totalItems    = initInvetory.reduce((sum, i) => sum + i.stock, 0);
+  const totalValue    = initInvetory.reduce((sum, i) => sum + i.stock * i.price, 0);
   
   return (
     <div id="inventory" className="mb-10">

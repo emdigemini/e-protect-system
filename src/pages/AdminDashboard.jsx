@@ -6,6 +6,13 @@ const AdminDashboard = () => {
   const { setSystemOnlineStatus, isSystemOnline, requests } = useContext(serviceContext);
   useEffect(() => console.log(requests), [requests])
 
+  console.log(requests);
+  const pendingBooking = requests?.reduce((total, item) => {
+    return item.status === "Pending" ? total + 1 : total
+  }, 0);
+
+  console.log(pendingBooking);
+
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
       {/* Header */}
@@ -37,7 +44,6 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      {/* Stat Cards - Isang column sa mobile, lumalawak pataas */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10">
         <div className="bg-[#121212]/40 border border-neutral-800/60 rounded-xl p-6 relative overflow-hidden group hover:border-neutral-700 transition-all">
           <div className="absolute top-0 left-0 w-1 h-full bg-[#DFFF00]"></div>
@@ -46,8 +52,8 @@ const AdminDashboard = () => {
         </div>
         <div className="bg-[#121212]/40 border border-neutral-800/60 rounded-xl p-6 relative overflow-hidden group hover:border-neutral-700 transition-all">
           <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-2">Pending Surveys</p>
-          <h3 className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-white group-hover:text-blue-400 transition-colors">04</h3>
+          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-2">Pending Booking</p>
+          <h3 className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-white group-hover:text-blue-400 transition-colors">{pendingBooking}</h3>
         </div>
         <div className="bg-[#121212]/40 border border-neutral-800/60 rounded-xl p-6 relative overflow-hidden group hover:border-neutral-700 transition-all sm:col-span-2 lg:col-span-1">
           <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>

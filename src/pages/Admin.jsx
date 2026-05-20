@@ -33,7 +33,6 @@ function Admin() {
     }
   };
 
-  // Logout/Lock handler (Optional kung gusto mo lagyan ng lock button sa panel)
   const handleLockPortal = () => {
     setHasAccess(false);
     localStorage.removeItem("e_protect_admin_access");
@@ -156,19 +155,23 @@ function Admin() {
                 </NavLink>
               </nav>
             </div>
-
-            <div 
-              onClick={handleLockPortal}
-              className="pt-4 border-t border-neutral-800/60 flex items-center justify-between group cursor-pointer"
-              title="Click to lock portal"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center group-hover:bg-red-500/10 transition-colors">
-                  <FiUser className="text-neutral-400 group-hover:text-red-400" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium group-hover:text-red-400 transition-colors">Admin Panel</p>
-                  <p className="text-xs text-neutral-500">Baras, Rizal</p>
+            <div className='flex flex-col gap-4'>
+              <a href="/" className="text-[#cfff04] no-underline bg-transparent border-none p-0 hover:text-white">
+                  Customer Portal
+                </a>
+              <div 
+                onClick={handleLockPortal}
+                className="pt-4 border-t border-neutral-800/60 flex items-center justify-between group cursor-pointer"
+                title="Click to lock portal"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center group-hover:bg-red-500/10 transition-colors">
+                    <FiUser className="text-neutral-400 group-hover:text-red-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium group-hover:text-red-400 transition-colors">Admin Panel</p>
+                    <p className="text-xs text-neutral-500">Baras, Rizal</p>
+                  </div>
                 </div>
               </div>
             </div>
