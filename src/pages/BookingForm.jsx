@@ -3,6 +3,7 @@ import { ArrowLeft, ChevronDown, Calendar, Clock, ShieldCheck } from 'lucide-rea
 import TimePicker from 'react-time-picker';
 import { useContext, useEffect, useRef, useState } from 'react';
 import serviceContext from '../context/serviceContext';
+import toast from 'react-hot-toast';
 
 const services = [
   { id: '01', name: 'CCTV Installation' },
@@ -67,12 +68,19 @@ const BookingForm = () => {
           
           <div className="lg:col-span-2 bg-[#111111] border border-gray-800 p-8 md:p-12 rounded-sm">
             <form onSubmit={(e) => {
+              e.preventDefault();
               newRequest({
                 name, phone, location,
                 service: getServices(),
                 date: transformDate(),
                 notes
               });
+              setName("");
+              setPhone("");
+              setLocation("");
+              setServiceId("");
+              setNotes("");
+              toast.success("Booking received! We'll review it and get back to you soon.");
             }} className="space-y-8">
               
               {/* Row 1: Name and Number */}
@@ -85,6 +93,7 @@ const BookingForm = () => {
                     placeholder="Juan Dela Cruz"
                     className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm focus:outline-none focus:border-[#d4ff00] transition-colors placeholder:text-gray-700"
                     onChange={(e) => setName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="space-y-2">
@@ -95,6 +104,7 @@ const BookingForm = () => {
                     placeholder="0912-345-6789"
                     className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm focus:outline-none focus:border-[#d4ff00] transition-colors placeholder:text-gray-700"
                     onChange={(e) => setPhone(formatPhone(e.target.value))}
+                    required
                   />
                 </div>
               </div>
@@ -108,6 +118,7 @@ const BookingForm = () => {
                   placeholder="Block 4 Lot 7, Brgy. San Juan, Baras, Rizal"
                   className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm focus:outline-none focus:border-[#d4ff00] transition-colors placeholder:text-gray-700"
                   onChange={(e) => setLocation(e.target.value)}
+                    required
                 />
               </div>
 
@@ -115,10 +126,12 @@ const BookingForm = () => {
               <div className="space-y-2">
                 <label className="block text-[10px] font-mono text-white/50 tracking-widest uppercase font-bold">Service Type *</label>
                 <div className="relative">
-                  <select className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm appearance-none focus:outline-none focus:border-[#d4ff00] transition-colors text-gray-400" value={serviceId}
+                  <select className="w-full bg-[#0a0a0a] text-xs border border-gray-800 p-3 rounded-sm appearance-none focus:outline-none focus:border-[#d4ff00] transition-colors text-gray-400" 
+                  required
+                  value={serviceId}
                   autoFocus={focusField}
                   onChange={(e) => setServiceId(e.target.value)}>
-                    <option>Choose a service</option>
+                    <option value="">Choose a service</option>
                     <option value="01">CCTV Installation</option>
                     <option value="02">Alarm Systems</option>
                     <option value="03">Mobile Phone Monitoring</option>
@@ -150,7 +163,7 @@ const BookingForm = () => {
                   setPhone("");
                   setLocation("");
                   setServiceId("");
-                  setNotes("");
+                  setNotes(""); 
                 }}>
                   Clear
                 </button>

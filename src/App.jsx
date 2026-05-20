@@ -10,6 +10,7 @@ import ServiceProvider from "./context/ServiceProvider"
 import Admin from "./pages/Admin"
 import Inventory from "./pages/Inventory"
 import AdminDashboard from "./pages/AdminDashboard"
+import { Toaster } from "react-hot-toast"
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
             </Routes>
           </ServiceProvider>
         </ScrollToTop>
+        <Toaster position="top-right"/>
     </div>
   )
 }
