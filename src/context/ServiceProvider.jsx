@@ -42,7 +42,7 @@ const ServiceProvider = ({ children }) => {
       phone: body.phone,
       location: body.location,
       service: body.service,
-      data: body.date,
+      date: body.date,
       notes: body.notes,
       status: "Pending"
     };
